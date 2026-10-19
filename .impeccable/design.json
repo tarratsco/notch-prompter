@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-15T20:36:05.819-04:00",
+  "title": "Design System: Notch Prompter",
+  "extensions": {
+    "colorMeta": {
+      "live-red": {
+        "role": "primary",
+        "displayName": "Live Red",
+        "canonical": "rgb(78% 8% 6%)"
+      },
+      "canvas": {
+        "role": "neutral",
+        "displayName": "Canvas Graphite",
+        "canonical": "rgb(5.5% 5.5% 6%)"
+      },
+      "raised": {
+        "role": "neutral",
+        "displayName": "Raised Graphite",
+        "canonical": "rgb(9% 9% 10%)"
+      },
+      "control": {
+        "role": "neutral",
+        "displayName": "Control Graphite",
+        "canonical": "rgb(14% 13.5% 14%)"
+      },
+      "warm-text": {
+        "role": "neutral",
+        "displayName": "Warm Reading White",
+        "canonical": "rgb(96% 93% 87%)"
+      },
+      "secondary-text": {
+        "role": "neutral",
+        "displayName": "Studio Gray",
+        "canonical": "rgb(65% 62% 57%)"
+      },
+      "separator": {
+        "role": "neutral",
+        "displayName": "Fine Separator",
+        "canonical": "rgb(100% 100% 100% / 12%)"
+      },
+      "prompt-black": {
+        "role": "neutral",
+        "displayName": "Prompt Black",
+        "canonical": "#000000"
+      },
+      "prominent-text": {
+        "role": "neutral",
+        "displayName": "Prominent White",
+        "canonical": "#ffffff"
+      }
+    },
+    "typographyMeta": {
+      "countdown": {
+        "displayName": "Countdown",
+        "purpose": "Signature 3-2-1 cue in the expanded notch panel."
+      },
+      "prompt": {
+        "displayName": "Prompt",
+        "purpose": "Adjustable centered teleprompter reading copy."
+      },
+      "headline": {
+        "displayName": "Workspace Headline",
+        "purpose": "Primary editor workspace heading."
+      },
+      "body": {
+        "displayName": "Editor Body",
+        "purpose": "Script editing and supporting preview copy."
+      },
+      "control": {
+        "displayName": "Control Label",
+        "purpose": "Buttons, settings, and switch labels."
+      },
+      "measurement": {
+        "displayName": "Measurement",
+        "purpose": "Changing WPM, rate, and point values."
+      }
+    },
+    "motion": [
+      {
+        "name": "panel-posture",
+        "value": "180ms ease-out",
+        "purpose": "Expanded and collapsed panel transitions; disabled with Reduce Motion."
+      },
+      {
+        "name": "countdown-numeric",
+        "value": "native numeric-text transition",
+        "purpose": "Countdown digit transition; identity transition with Reduce Motion."
+      },
+      {
+        "name": "button-press",
+        "value": "opacity 1 to 0.76",
+        "purpose": "Immediate tactile feedback for studio buttons."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Playback Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The red Play action shown only while playback is idle."
+    },
+    {
+      "name": "Secondary Studio Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Neutral action for files, panel visibility, and expansion."
+    },
+    {
+      "name": "Transport Button",
+      "kind": "button",
+      "refersTo": "transport-button",
+      "description": "Compact SF Symbol control for play, pause, reset, expand, or collapse."
+    },
+    {
+      "name": "Live Status Indicator",
+      "kind": "chip",
+      "refersTo": "status-indicator",
+      "description": "Dot-and-label status for READY, STANDBY, LIVE, and COMPLETE."
+    },
+    {
+      "name": "Measurement Label",
+      "kind": "custom",
+      "refersTo": "measurement-label",
+      "description": "Tabular value and compact unit used beside adjustment controls."
+    },
+    {
+      "name": "Notch Prompt Shell",
+      "kind": "custom",
+      "refersTo": "panel-expanded",
+      "description": "Expanded confidence monitor with centered copy and fixed reading guide."
+    }
+  ],
+  "narrative": {
+    "northStar": "Broadcast Cue",
+    "overview": "A compact confidence monitor built into studio hardware, with matte graphite planes, warm reading text, restrained controls, and a scarce live-red signal.",
+    "keyCharacteristics": [
+      "Matte graphite surfaces separated by tone and one-pixel rules.",
+      "Warm-white reading text against near-black prompt fields.",
+      "Live red reserved for playback-critical state and action.",
+      "Native typography with monospaced digits limited to measurements.",
+      "A split editor workspace paired with a notch-aligned confidence monitor.",
+      "Immediate pause and reduced-motion-safe state changes."
+    ],
+    "rules": [
+      {
+        "name": "The Live Red Rule",
+        "body": "Reserve Live Red for primary playback, live or countdown state, progress, and the reading guide.",
+        "section": "colors"
+      },
+      {
+        "name": "The Warm Legibility Rule",
+        "body": "Reading content and primary labels use Warm Reading White; Studio Gray is secondary only.",
+        "section": "colors"
+      },
+      {
+        "name": "The Utility Mono Rule",
+        "body": "Monospaced figures belong only to timing and measurement.",
+        "section": "typography"
+      },
+      {
+        "name": "The Prompt Owns the Scale Rule",
+        "body": "Prompt copy and countdown digits own the largest type.",
+        "section": "typography"
+      },
+      {
+        "name": "The Camera Axis Rule",
+        "body": "Prompt text, countdown numerals, and reading guide stay centered on the notch or fallback axis.",
+        "section": "layout"
+      },
+      {
+        "name": "The Working Split Rule",
+        "body": "The first editor view preserves both the script workspace and preview/control rail.",
+        "section": "layout"
+      },
+      {
+        "name": "The Matte Layer Rule",
+        "body": "Use graphite tone changes and one-pixel separators, not gradients, glow, or decorative translucency.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Native Shadow Rule",
+        "body": "Reserve elevation for the operating-system panel shadow.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Posture Radius Rule",
+        "body": "The panel becomes more rounded as it expands.",
+        "section": "shapes"
+      }
+    ]
+  }
+}
