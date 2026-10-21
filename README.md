@@ -1,98 +1,140 @@
+<div align="center">
+
+<img src="docs/screenshots/app-icon.png" width="128" alt="Notch Prompter app icon">
+
 # Notch Prompter
 
-Notch Prompter is a native macOS teleprompter that keeps your script close to
-the camera. It has a normal script editor and an always-on-top notch panel with
-a 3–2–1 cue, smooth WPM-based scrolling, and compact playback controls.
+**A teleprompter that hangs from your MacBook's notch.**
 
-## Requirements
+Your script scrolls a few centimeters below the camera, so you can read it and
+still look at the person on the other end.
+
+![macOS 14+](https://img.shields.io/badge/macOS-14%2B-000000?logo=apple&logoColor=white)
+![Swift 6](https://img.shields.io/badge/Swift-6-F05138?logo=swift&logoColor=white)
+![No Xcode required](https://img.shields.io/badge/Xcode-not%20required-555555)
+![No dependencies](https://img.shields.io/badge/dependencies-none-555555)
+
+<br>
+
+<img src="docs/screenshots/hero.png" alt="The Notch Prompter panel hanging from the MacBook notch over the desktop, showing the current script line on a red reading guide" width="100%">
+
+</div>
+
+---
+
+## Why the notch?
+
+A floating teleprompter window goes wherever there's room on screen. That's
+rarely next to the camera, and viewers notice when your eyes keep drifting to
+one side.
+
+The notch is the one spot on a MacBook that is always right beside the lens.
+Notch Prompter's panel grows down from it, so the line you're reading sits
+directly under the camera. On a display without a notch, the panel becomes a
+centered pill at the top of the screen.
+
+## Features
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### A reading guide near the lens
+
+A thin red guide line sits 22% of the way down the prompt. The line you're on
+is warm white and everything else is dimmed. The app tracks each wrapped line
+on its own, so a long sentence that spans two lines still highlights one line
+at a time.
+
+</td>
+<td width="50%" valign="top">
+
+<img src="docs/screenshots/panel-expanded.png" alt="Expanded prompter panel with the active line on the red guide and the next lines dimmed">
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+<img src="docs/screenshots/panel-collapsed.png" alt="Collapsed prompter panel showing only home, status, play, and expand controls">
+
+</td>
+<td width="50%" valign="top">
+
+### A countdown before you start
+
+Press play and the notch shows a red 3-2-1 before the script moves. Between
+takes, collapse the panel into a slim pill. Play and expand stay in it.
+
+</td>
+</tr>
+</table>
+
+### An editor for setup
+
+<img src="docs/screenshots/editor.png" alt="Script editor with the script on the left and live preview, transport, reading pace, speed trim, prompt size, and countdown controls on the right">
+
+- **Bring any script.** Paste it, open it, or drop a `.txt`, `.md`, or
+  `.markdown` file onto the editor. The app converts Markdown to plain text.
+- **Set the pace in words per minute.** A speed trim multiplier fine-tunes it,
+  and the transport shows the total run time.
+- **Size the text** for your screen and how far back you sit.
+- **Check the live preview.** It shows the same lines the notch will.
+
+### Fix your place mid-read
+
+- Scroll over the prompt with a mouse or trackpad. Scrolling pauses playback
+  so the auto-scroll doesn't pull the text away from you.
+- Step one line up or down with the footer arrows, or drag the progress
+  slider to jump farther.
+- Press Reset to go back to the top.
+
+### One shortcut from any app
+
+Press **⌘⇧P** to play or pause while your recording or call app has focus.
+Notch Prompter registers the hotkey through macOS's hotkey API. It doesn't
+read your keystrokes, and it doesn't need Accessibility or Input Monitoring
+permission.
+
+The caption icon in the menu bar can also open the editor or panel and control
+playback while the editor is hidden.
+
+---
+
+## Getting started
+
+### Requirements
 
 - macOS 14 Sonoma or newer
-- Apple Command Line Tools with Swift 6 (validated with Swift 6.1.2; full Xcode
-  is not required)
-
-Check Swift:
+- Apple Command Line Tools with Swift 6. I've tested it with Swift 6.1.2. You
+  don't need full Xcode.
 
 ```bash
 swift --version
 ```
 
-## Run from source
-
-From this folder:
+### Run from source
 
 ```bash
 swift run NotchPrompterApp
-```
-
-Or use the convenience script:
-
-```bash
+# or
 ./scripts/run.sh
 ```
 
-The first build can take a little longer. The editor opens with a sample script
-ready to try. Press **Command-Shift-P** to play or pause.
+The first build takes a little longer. The editor opens with a sample script,
+so you can press **⌘⇧P** right away.
 
-## Use the app
+### Build a local `.app`
 
-1. Paste or type in the editor, click **Open Script**, or drop a UTF-8 `.txt`,
-   `.md`, or `.markdown` file onto the editor.
-2. Set WPM, speed trim, text size, and the countdown option.
-3. Keep the panel expanded while reading, or collapse it to a small status pill.
-4. Press Play. When the cue is enabled, the notch shows a red 3–2–1 before the
-   script moves.
-5. Read the warm-white line crossing the fixed red guide, positioned 22% down
-   the reading viewport to keep your gaze near the camera. Wrapped lines are
-   tracked individually while the surrounding script remains dimmed.
-6. If you miss a line, scroll directly over the prompt with a mouse or
-   trackpad. Manual scrolling pauses playback so it does not fight your
-   correction.
-7. Use the footer’s up/down controls to step one visual line at a time, drag
-   the progress slider to scrub farther, or use Reset to return to the
-   beginning.
-
-The menu-bar caption icon can show the editor or panel and control playback
-when the editor is hidden.
-
-## Keyboard shortcut
-
-**Command-Shift-P** works system-wide while Notch Prompter is running. It uses
-macOS's exact hotkey registration API and does not monitor keystrokes or require
-Accessibility or Input Monitoring permission. If another app has already
-reserved the shortcut, Notch Prompter reports that registration failed and the
-Play / Pause command remains available from its app and status menus.
-
-## Test and build
-
-Run unit tests for Markdown conversion and playback logic:
-
-```bash
-swift test
-```
-
-Build a debug executable:
-
-```bash
-swift build
-```
-
-Build a release executable:
-
-```bash
-swift build -c release
-```
-
-## Create a local app bundle
-
-No Xcode project is needed:
+You don't need an Xcode project:
 
 ```bash
 ./scripts/build-app.sh
 open "dist/Notch Prompter.app"
 ```
 
-The script builds for the current Mac's architecture, verifies the executable
-with `lipo`, and assembles:
+The script builds for your Mac's architecture, checks the executable with
+`lipo`, and assembles this bundle:
 
 ```text
 dist/Notch Prompter.app/
@@ -102,41 +144,53 @@ dist/Notch Prompter.app/
     └── Resources/AppIcon.icns
 ```
 
-The packaged app includes a custom Broadcast Cue icon. To regenerate its
-complete macOS icon set after changing the vector drawing:
+The bundle is unsigned and unnotarized, and it only runs on the architecture
+that built it. An Apple silicon Mac produces `arm64` and an Intel Mac produces
+`x86_64`, so build once on each kind of Mac you want to share with. If macOS
+quarantines a copied bundle, Control-click it in Finder and choose **Open**.
+
+---
+
+## Development
 
 ```bash
-./scripts/generate-app-icon.sh
+swift test                  # Markdown conversion, playback math, panel geometry
+swift build                 # debug build
+swift build -c release      # release build
 ```
 
-This bundle is host-architecture-only (`arm64` on Apple silicon or `x86_64` on
-Intel), unsigned, and unnotarized. Build separately on each architecture when
-sharing with a different kind of Mac. If macOS quarantines a copied bundle,
-Control-click it in Finder and choose **Open**.
-
-## Development and validation
-
-Render deterministic snapshots of the shipping SwiftUI views without launching
-the interactive app. The expanded-panel snapshot includes the active
-warm-white visual line and dimmed surrounding lines:
+**UI snapshots.** This script renders the shipping SwiftUI views to PNG
+without launching the interactive app:
 
 ```bash
 ./scripts/capture-ui.sh
 ```
 
-This writes `editor.png` (1040×680) and `prompter-panel.png` (640×420) under
-`.impeccable/review/`.
+It writes three files to `.impeccable/review/`:
 
-## Current limitations
+- `editor.png` at 1040×680
+- `prompter-panel.png` at 640×420
+- `prompter-panel-collapsed.png` at 548×50
 
-- Command-Shift-P is unavailable if another running app has reserved the same
-  system-wide hotkey.
-- The panel uses the active editor display. On a notched screen it derives the
-  camera gap from `safeAreaInsets` and the auxiliary top areas; other displays
-  use a centered top pill.
-- “Always on top” uses a status-bar-level panel that joins all Spaces and is
-  allowed beside full-screen windows. macOS and some exclusive full-screen apps
-  can still place protected content above it.
-- Markdown is intentionally converted conservatively to readable plain text;
-  complex tables and embedded media are not rendered.
-- Settings and scripts are not persisted between launches in this first build.
+The images in `docs/screenshots/` come from these snapshots.
+
+**App icon.** After you change the icon's vector drawing, regenerate the full
+macOS icon set:
+
+```bash
+./scripts/generate-app-icon.sh
+```
+
+## Known limitations
+
+- If another running app has already claimed **⌘⇧P**, the shortcut won't
+  work. Play/Pause is still in the app menu and the status menu.
+- The panel appears on whichever display the editor is on. On a notched
+  screen it works out the camera gap from `safeAreaInsets` and the auxiliary
+  top areas. Other displays get a centered pill at the top.
+- "Always on top" uses a status-bar-level panel that joins every Space and can
+  sit beside full-screen windows. macOS and some exclusive full-screen apps can
+  still draw protected content over it.
+- The Markdown conversion is conservative. It drops complex tables and
+  embedded media.
+- The app doesn't save settings or scripts between launches yet.
